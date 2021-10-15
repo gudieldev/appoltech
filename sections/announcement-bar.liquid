@@ -1,3 +1,71 @@
 <div class="alert alert-primary" role="alert">
 	A simple primary alert—check it out!
 </div><!-- /.alert -->
+
+{% schema %}
+{
+	"name": "Top Bar Announcement",
+	"tag": "section",
+	"class": "element-test-class",
+	"settings": [
+		{
+			"type": "text",
+			"id": "announcement_title",
+			"label": "Announcements",
+			"default": "Important message for clients."
+		}
+	],
+	"blocks": [
+		"name": "Announcement",
+		"type": "announcement",
+		"settings": [
+			{
+				"type": "text",
+				"id": "message",
+				"label": "Message",
+				"default": "Announcement Message here."
+			},
+			{
+				"type": "select",
+				"id": "alert_type",
+				"label": "Alert Type",
+				"options": [
+					{
+						"value": "primary",
+						"label": "Primary"
+					},
+					{
+						"value": "secondary",
+						"label": "Secondary"
+					},
+					{
+						"value": "success",
+						"label": "Success"
+					},
+					{
+						"value": "danger",
+						"label": "Danger"
+					},
+					{
+						"value": "warning",
+						"label": "Warning"
+					},
+					{
+						"value": "info",
+						"label": "Info"
+					},
+					{
+						"value": "light",
+						"label": "Light"
+					},
+					{
+						"value": "dark",
+						"label": "Dark"
+					}
+				],
+				"default": "warning"
+			}
+		]
+	]
+}
+{% endschema %}
