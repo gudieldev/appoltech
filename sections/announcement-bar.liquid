@@ -1,71 +1,92 @@
-<div class="alert alert-primary" role="alert">
-	A simple primary alert—check it out!
-</div><!-- /.alert -->
+{% for block in section.blocks %}
+	{% case block.type %}
+		{% when "announcement" %}
+			<div class="container">
+				<div class="alert alert-{{ block.settings.alert_type }} {{ block.settings.text_alignement }} my-3" role="alert">
+					<p class="">{{ block.settings.message }}</p>
+				</div><!-- /.alert -->
+			</div><!-- /.container -->
+	{% endcase %}
+{% endfor %}
 
 {% schema %}
 {
 	"name": "Top Bar Announcement",
 	"tag": "section",
-	"class": "element-test-class",
-	"settings": [
-		{
-			"type": "text",
-			"id": "announcement_title",
-			"label": "Announcements",
-			"default": "Important message for clients."
-		}
-	],
+	"class": "section-top-announcement",
 	"blocks": [
-		"name": "Announcement",
-		"type": "announcement",
-		"settings": [
-			{
-				"type": "text",
-				"id": "message",
-				"label": "Message",
-				"default": "Announcement Message here."
-			},
-			{
-				"type": "select",
-				"id": "alert_type",
-				"label": "Alert Type",
-				"options": [
-					{
-						"value": "primary",
-						"label": "Primary"
-					},
-					{
-						"value": "secondary",
-						"label": "Secondary"
-					},
-					{
-						"value": "success",
-						"label": "Success"
-					},
-					{
-						"value": "danger",
-						"label": "Danger"
-					},
-					{
-						"value": "warning",
-						"label": "Warning"
-					},
-					{
-						"value": "info",
-						"label": "Info"
-					},
-					{
-						"value": "light",
-						"label": "Light"
-					},
-					{
-						"value": "dark",
-						"label": "Dark"
-					}
-				],
-				"default": "warning"
-			}
-		]
+		{
+			"name": "Announcement",
+			"type": "announcement",
+			"settings": [
+				{
+					"type": "richtext",
+					"id": "message",
+					"label": "Message",
+					"default": "<p>Announcement Message here.</p>"
+				},
+				{
+					"type": "select",
+					"id": "alert_type",
+					"label": "Alert Type",
+					"options": [
+						{
+							"value": "primary",
+							"label": "Primary"
+						},
+						{
+							"value": "secondary",
+							"label": "Secondary"
+						},
+						{
+							"value": "success",
+							"label": "Success"
+						},
+						{
+							"value": "danger",
+							"label": "Danger"
+						},
+						{
+							"value": "warning",
+							"label": "Warning"
+						},
+						{
+							"value": "info",
+							"label": "Info"
+						},
+						{
+							"value": "light",
+							"label": "Light"
+						},
+						{
+							"value": "dark",
+							"label": "Dark"
+						}
+					],
+					"default": "warning"
+				},
+				{
+					"type": "select",
+					"id": "text_alignement",
+					"label": "Text Alignement",
+					"options": [
+						{
+							"value": "text-start",
+							"label": "Left"
+						},
+						{
+							"value": "text-center",
+							"label": "Center"
+						},
+						{
+							"value": "text-end",
+							"label": "Right"
+						}
+					],
+					"default": "text-start"
+				}
+			]
+		}
 	]
 }
 {% endschema %}

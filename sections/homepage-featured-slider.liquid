@@ -1,0 +1,101 @@
+<div id="carouselExampleIndicators" class="carousel {{ section.settings.slides_animation }}" data-bs-ride="carousel">
+	<div class="carousel-indicators">
+		{% for block in section.blocks %}
+			{% case block.type %}
+				{% when 'slide' %}
+					{% if forloop.first == true %}
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.index0 }}" class="active" aria-current="true" aria-label="{{ block.settings.slide_title }}"></button>
+					{% else %}
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.index0 }}" aria-label="{{ block.settings.slide_title }}"></button>
+					{% endif %}
+			{%endcase%}
+		{% endfor %}
+	</div><!-- /.carousel-indicators -->
+
+	<div class="carousel-inner">
+
+		{% for block in section.blocks %}
+			{% case block.type %}
+				{% when 'slide' %}
+					{% if forloop.first == true %}
+						<div class="carousel-item active">
+					{% else %}
+						<div class="carousel-item">
+					{% endif %}
+						{{ block.settings.image | img_url: 'master' | img_tag: '', 'd-block w-100' }}
+						<div class="carousel-caption d-none d-md-block">
+							<h5>{{ block.settings.slide_title }}</h5>
+							<p>{{ block.settings.slide_description }}</p>
+						</div><!-- /.carousel-caption -->
+					</div><!-- /.carousel-item -->
+			{% endcase %}
+		{% endfor %}
+
+	</div><!-- /.carousel-inner -->
+
+	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button><!-- /.carousel-control-prev -->
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button><!-- /.carousel-contron-next -->
+</div><!-- /.carouselExampleIndicators -->
+
+{% schema %}
+{
+	"name": "Homepage Featured Slider",
+	"tag": "section",
+	"class": "homepage-featured-slider",
+	"max_blocks": 3,
+	"settings": [
+		{
+			"type": "select",
+			"id": "slides_animation",
+			"label": "Slides Animation",
+			"options": [
+				{
+					"value": "slide",
+					"label": "Slide"
+				},
+				{
+					"value": "slide carousel-fade",
+					"label": "Fade"
+				}
+			]
+		}
+	],
+	"blocks": [
+		{
+			"name": "Slide",
+			"type": "slide",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "slide_title",
+					"label": "Slide Title"
+				},
+				{
+					"type": "richtext",
+					"id": "slide_description",
+					"label": "Slide Description"
+				}
+			]
+		}
+	],
+	"default": {
+		"blocks": [
+			{
+				"type": "slide"
+			}
+		]
+	}
+}
+
+{% endschema %}
