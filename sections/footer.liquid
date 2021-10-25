@@ -14,7 +14,50 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient">
+<footer class="my-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+				<h5>Store Information</h5>
+				<p>Example address, 123456, Example city, Example Country, 612361</p>
+				<br>
+				<h5>Contact email:</h5>
+				<p>contact@example.com</p>
+				<h5>Contact number:</h5>
+				<p>457321853</p>
+			</div><!-- /.col -->
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+				<h5>Quick Links</h5>
+				<ul>
+					<li><a href="#0">Home</a></li>
+					<li><a href="#0">Products</a></li>
+					<li><a href="#0">Collections</a></li>
+					<li><a href="#0">Collections</a></li>
+				</ul><!-- /.ul -->
+			</div><!-- /.col -->
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+				<h5>Quick Links</h5>
+				<ul>
+					<li><a href="#0">Home</a></li>
+					<li><a href="#0">Cart</a></li>
+					<li><a href="#0">FAQs</a></li>
+					<li><a href="#0">About Us</a></li>
+				</ul><!-- /.ul -->
+			</div><!-- /.col -->
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+				<h5>Quick Links</h5>
+				<ul>
+					<li><a href="#0">Home</a></li>
+					<li><a href="#0">About Us</a></li>
+					<li><a href="#0">Article</a></li>
+					<li><a href="#0">Blog</a></li>
+				</ul><!-- /.ul -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</footer><!-- /FOOTER  -->
+
+<footer class="footer color-{{ section.settings.color_scheme }} gradient d-none">
   {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
     <div class="footer__content-top page-width">
       {%- if section.blocks.size > 0 -%}

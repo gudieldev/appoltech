@@ -1,0 +1,288 @@
+.section-custom-slider img {
+  width: 100%;
+}
+
+.product-img {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.section-homepage-slider {
+  padding: 50px 0;
+}
+
+.section-custom-slider {
+  padding: 50px 0;
+}
+
+.section-custom-slider .custom-slider-wrapper {
+  position: relative;
+}
+
+.section-custom-slider .custom-slider-wrapper .custom-slider .slider-item {
+  position: relative;
+}
+
+.section-custom-slider .custom-slider-wrapper .custom-slider .slider-item img {
+  width: 100%;
+}
+
+.section-custom-slider .custom-slider-wrapper .custom-slider .slider-item__content {
+  position: absolute;
+  bottom: 0;
+  padding: 1rem 20px;
+  width: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.2)), color-stop(rgba(0, 0, 0, 0.4)), color-stop(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.8)));
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+  color: #fff;
+  text-align: center;
+}
+
+.section-custom-slider .custom-slider__arrows .slick-arrow {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.section-custom-slider .custom-slider__arrows .slick-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.section-custom-slider .custom-slider__arrows .slick-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.section-custom-slider .custom-slider__arrows .slick-arrow svg path {
+  fill: #fff;
+}
+
+.section-custom-slider .custom-slider__arrows .slick-prev {
+  left: 2%;
+}
+
+.section-custom-slider .custom-slider__arrows .slick-next {
+  right: 2%;
+}
+
+.section-custom-slider .custom-slider__indicators {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.section-custom-slider .custom-slider__indicators ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 0;
+}
+
+.section-custom-slider .custom-slider__indicators ul li {
+  margin: 0 5px;
+  width: 10px;
+  height: 10px;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 0;
+  font-size: 0;
+  cursor: pointer;
+}
+
+.section-custom-slider .custom-slider__indicators ul li.slick-active {
+  background-color: #fff;
+}
+
+.section-custom-slider .custom-slider__indicators ul li button {
+  display: none;
+}
+
+.featured-collection-slider {
+  padding: 50px 0;
+}
+
+.featured-collection-slider .card {
+  margin: 0 10px;
+}
+
+.featured-collection-slider .featured-collection-slider__arrows {
+  position: relative;
+}
+
+.section-testimonials-slider .testimonials-slider__arrows {
+  position: relative;
+}
+
+.section-testimonials-slider .testimonial {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  margin: 0 10px;
+  padding: 15px;
+}
+
+.section-testimonials-slider .testimonial .profile-picture {
+  width: 50%;
+  padding-bottom: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  text-align: initial;
+}
+
+.section-testimonials-slider .testimonial .profile-picture img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.section-testimonials-slider .testimonial .stars svg {
+  fill: orange;
+}
+
+.section-social-media .social-media-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-social-media .social-media-wrapper a {
+  margin-right: 15px;
+}
+
+.section-social-media .social-media-wrapper a:last-child {
+  margin-right: 0;
+}
+
+.section-social-media .social-media-wrapper a svg {
+  width: 25px;
+  height: 25px;
+}
+
+.product-details .product-images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-left: -7.5px;
+  margin-right: -7.5px;
+}
+
+.product-details .product-images .product-image-wrapper {
+  width: calc(100% / 4);
+  padding: 0 7.5px;
+}
+
+.product-details .product-images .product-image-wrapper .product-image {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.product-details .product-images .product-image-wrapper .product-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.section-blog-list .featured-image-wrapper .featured-image {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-blog-list .featured-image-wrapper .featured-image img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.cart-details .product-table-wrapper .product img {
+  max-width: 100px;
+}
+
+.section-padding {
+  padding: 50px 0;
+}
+
+.section-title {
+  margin-bottom: 20px;
+}
+
+.slick-arrows-wrapper {
+  position: absolute;
+  bottom: 2rem;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.slick-arrows-wrapper .slick-arrow {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  background-color: gray;
+}
+
+.slick-arrows-wrapper .slick-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+}
+/*# sourceMappingURL=style.css.map */

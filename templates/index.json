@@ -3,14 +3,12 @@
 		"homepage_featured_slider": {
 			"type": "homepage-featured-slider"
 		},
-		"custom_slick_slider": {
-			"type": "custom-slick-slider"
-		},
 		"homepage_featured_collection": {
 			"type": "homepage-featured-collection"
 		}
 	},
 	"order": [
-		"homepage_featured_slider", "custom_slick_slider", "homepage_featured_collection"
+		"homepage_featured_slider",
+		"homepage_featured_collection"
 	]
 }
