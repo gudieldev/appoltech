@@ -5,10 +5,18 @@
 		},
 		"homepage_featured_collection": {
 			"type": "homepage-featured-collection"
+		},
+		"homepage_faq": {
+			"type": "homepage-faq"
+		},
+		"homepage_testimonials": {
+			"type": "homepage-testimonials"
 		}
 	},
 	"order": [
 		"homepage_featured_slider",
-		"homepage_featured_collection"
+		"homepage_featured_collection",
+		"homepage_faq",
+		"homepage_testimonials"
 	]
 }
