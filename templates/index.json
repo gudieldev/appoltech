@@ -4,7 +4,11 @@
 			"type": "homepage-featured-slider"
 		},
 		"homepage_featured_collection": {
-			"type": "homepage-featured-collection"
+			"type": "homepage-featured-collection",
+			"settings": {
+				"collection_title": "This is the Featured Collection",
+				"featured_collection": "iphones"
+			}
 		},
 		"homepage_faq": {
 			"type": "homepage-faq"
