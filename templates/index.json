@@ -11,12 +11,16 @@
 		},
 		"homepage_testimonials": {
 			"type": "homepage-testimonials"
+		},
+		"homepage_social_media": {
+			"type": "homepage-social-media"
 		}
 	},
 	"order": [
 		"homepage_featured_slider",
 		"homepage_featured_collection",
 		"homepage_faq",
-		"homepage_testimonials"
+		"homepage_testimonials",
+		"homepage_social_media"
 	]
 }
