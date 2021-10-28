@@ -35,7 +35,8 @@
 	{{ content_for_header }}
 
 	{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
-	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+	{{ 'slick.css' | asset_url | stylesheet_tag }}
+	{{ 'lightbox.min.css' | asset_url | stylesheet_tag }}
 	{{ 'style.css' | asset_url | stylesheet_tag }}
 
 
@@ -100,8 +101,8 @@
 	{%- endif -%}
 
 	<script src=" {{ 'bootstrap.bundle.min.js' | asset_url }}" defer="defer"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer="defer"></script>
-	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer="defer"></script>
+	<script src="{{ 'jquery.min.js' | asset_url }}" defer="defer"></script>
+	<script src="{{ 'slick.min.js' | asset_url }}" defer="defer"></script>
 	<script src="{{ 'lightbox.min.js' | asset_url }}" defer="defer"></script>
 	<script src="{{ 'scripts.js' | asset_url }}" defer="defer"></script>
 

@@ -1,0 +1,53 @@
+<section class="product-details section-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-6">
+				<div class="main-product-image">
+					<a href="{{ product.featured_image | img_url: 'master' }}" data-lightbox="product-image" data-title="Image Caption">
+						{{ product.featured_image | img_url: 'master' | img_tag: '' }}
+					</a><!-- /a -->
+				</div><!-- /.main-product-image -->
+				<div class="product-images">
+					{% for image in product.images %}
+						{% if forloop.first %}
+							{% continue %}
+						{% else %}
+							<div class="product-image-wrapper">
+								<a href="{{ image | img_url: 'master' }}" data-lightbox="product-image" data-title="Image Caption">
+									<div class="product-image">
+										{{ image | img_url: 'master' | img_tag: '' }}
+									</div><!-- /.product-image -->
+								</a><!-- /a -->
+							</div><!-- /.product-image-wrapper -->
+						{% endif %}
+					{% endfor %}
+				</div><!-- /.product-images -->
+			</div><!-- /.col-12 -->
+			<div class="col-12 col-md-6">
+				<a href="#0" class="badge badge-pill bg-info">{{ product.vendor | capitalize }}</a>
+				<h4>{{ product.title }}</h4>
+				{% unless product.compare_at_price == blank %}
+					<p>{{ 'Normal Price:' }} <del class="text-muted">{{ product.compare_at_price | money_with_currency }}</del></p>
+				{% endunless %}
+				<p>{% if product.compare_at_price == blank %}{{ 'Price: ' }}{% else %}{{ 'Offer: ' }}{% endif %}<span class="h3"><strong>{{ product.price | money_with_currency }}</strong></span></p>
+				<div class="quatity">
+					<p>{{ 'Quantity' }}</p>
+					<form action="" class="w-50">
+						<div class="input-group">
+							<button type="button" class="btn btn-secondary form-control">-</button>
+							<input type="text" value="1" class="form-control input-group-text">
+							<button type="button" class="btn btn-secondary form-control">+</button>
+						</div><!-- /.input-group -->
+					</form><!-- /.form -->
+					<div class="product-ctas mt-4">
+						<button class="btn btn-outline-success w-100 mt-1">{{ 'Add to Cart' }}</button>
+						<button class="btn btn-primary w-100 mt-1">{{ 'Buy it now' }}</button>
+					</div><!-- /.product-ctas -->
+					<div class="description mt-4">
+						<p>{{ product.description }}</p>
+					</div>
+				</div><!-- /.quantity -->
+			</div><!-- /.col-12 -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</section><!-- /.product-details -->

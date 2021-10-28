@@ -1,20 +1,30 @@
 {
 	"sections": {
 		"homepage_featured_slider": {
-			"type": "homepage-featured-slider"
+			"type": "homepage-featured-slider",
+			"settings": {
+				"show_arrows": true,
+				"show_indicators": true
+			}
 		},
 		"homepage_featured_collection": {
 			"type": "homepage-featured-collection",
 			"settings": {
-				"collection_title": "This is the Featured Collection",
-				"featured_collection": "iphones"
+				"collection_title": "This is the Featured Collection :)",
+				"featured_collection": "all"
 			}
 		},
 		"homepage_faq": {
-			"type": "homepage-faq"
+			"type": "homepage-faq",
+			"settings": {
+				"section_heading": "Frequently Asked Questions"
+			}
 		},
 		"homepage_testimonials": {
-			"type": "homepage-testimonials"
+			"type": "homepage-testimonials",
+			"settings": {
+				"section_heading": "Testimonials"
+			}
 		},
 		"homepage_social_media": {
 			"type": "homepage-social-media"
