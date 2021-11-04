@@ -30,24 +30,54 @@
 					<p>{{ 'Normal Price:' }} <del class="text-muted">{{ product.compare_at_price | money_with_currency }}</del></p>
 				{% endunless %}
 				<p>{% if product.compare_at_price == blank %}{{ 'Price: ' }}{% else %}{{ 'Offer: ' }}{% endif %}<span class="h3"><strong>{{ product.price | money_with_currency }}</strong></span></p>
-				<div class="quatity">
-					<p>{{ 'Quantity' }}</p>
-					<form action="" class="w-50">
-						<div class="input-group">
-							<button type="button" class="btn btn-secondary form-control">-</button>
-							<input type="text" value="1" class="form-control input-group-text">
-							<button type="button" class="btn btn-secondary form-control">+</button>
-						</div><!-- /.input-group -->
-					</form><!-- /.form -->
-					<div class="product-ctas mt-4">
-						<button class="btn btn-outline-success w-100 mt-1">{{ 'Add to Cart' }}</button>
-						<button class="btn btn-primary w-100 mt-1">{{ 'Buy it now' }}</button>
-					</div><!-- /.product-ctas -->
-					<div class="description mt-4">
-						<p>{{ product.description }}</p>
-					</div>
-				</div><!-- /.quantity -->
+				{% form 'product', product %}
+				<div class="w-50">
+					{% if product.variants.size > 1 %}
+						<p>{{ 'Variants:' }}</p>
+						<select name="id" class="form-select mb-3">
+							{% for variant in product.variants %}
+								<option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}>
+									{{ variant.title }} - {{ variant.price | money_with_currency }}
+								</option>
+							{% endfor %}
+						</select>
+					{% endif %}
+					<p>{{ 'Quantity:' }}</p>
+					<div class="input-group">
+						<button type="button" class="btn btn-secondary form-control decrease">-</button>
+						<input type="text" name="quantity" min="1" value="1" class="form-control input-group-text quantity">
+						<button type="button" class="btn btn-secondary form-control increase">+</button>
+					</div><!-- /.input-group -->
+				</div><!-- /.w-50 -->
+
+				<div class="product-ctas mt-4">
+					<input type="submit" class="btn btn-outline-success w-100 mt-1 mb-2" value="Add to cart">
+					{{ form | payment_button }}
+				</div><!-- /.product-ctas -->
+				{% endform %}
+				<div class="description mt-4">
+					<p>{{ product.description }}</p>
+					{% for tag in product.tags %}
+						{{ '#' | append: tag }}
+					{% endfor %}
+				</div>
 			</div><!-- /.col-12 -->
 		</div><!-- /.row -->
 	</div><!-- /.container -->
 </section><!-- /.product-details -->
+
+{% javascript %}
+	let btnIncrease = document.querySelector('.btn.increase');
+	let btnDecrease = document.querySelector('.btn.decrease');
+	let inputQuantity = document.querySelector('.form-control.quantity');
+
+	btnIncrease.addEventListener('click', function() {
+		inputQuantity.value = parseInt(inputQuantity.value) + 1;
+	});
+	
+	btnDecrease.addEventListener('click', function() {
+		if (parseInt(inputQuantity.value) > 1) {
+			inputQuantity.value = parseInt(inputQuantity.value) - 1;
+		}
+	});
+{% endjavascript %}
