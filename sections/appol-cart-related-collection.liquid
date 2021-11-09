@@ -1,0 +1,41 @@
+{% if section.settings.layout_type == 'grid' %}
+	{% render 'appol-cart-related-collection-grid', collections: collections[section.settings.featured_collection], section_settings: section.settings %}
+{% elsif section.settings.layout_type == 'slider' %}
+	{% render 'appol-cart-related-collection-slider', collections: collections[section.settings.featured_collection], section_settings: section.settings %}
+{% endif %}
+
+{% schema %}
+{
+	"name": "Featured Collection",
+	"tag": "section",
+	"class": "featured-collection section-padding",
+	"settings": [
+		{
+			"type": "text",
+			"id": "collection_title",
+			"label": "Collection Title"
+		},
+		{
+			"type": "select",
+			"id": "layout_type",
+			"label": "Grid Display Layout",
+			"options": [
+				{
+					"value": "grid",
+					"label": "Grid Layout"
+				},
+				{
+					"value": "slider",
+					"label": "Slider Layout"
+				}
+			],
+			"info": "Determines the layout in which the collection will be displayed"
+		},
+		{
+			"type": "collection",
+			"id": "featured_collection",
+			"label": "Featured Collection"
+		}
+	]
+}
+{% endschema %}

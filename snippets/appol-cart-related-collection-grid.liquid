@@ -1,0 +1,25 @@
+<section class="featured-collection-grid">
+	<div class="container">
+		<div class="section-title badge bg-danger">
+			<h3 class="display-6">{{ section_settings.collection_title }}</h3>
+		</div><!-- /.section-title -->
+		<div class="row">
+			{% for product in collections.products limit: 8 %}
+				{% if product.available == true %}
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+						<div class="card mb-4">
+							<div class="product-img">
+								{{ product.featured_image | img_url: 'master' | img_tag: '', 'card-img-top' }}
+							</div><!-- /.product-img -->
+							<div class="card-body">
+								<a href="{{ product.url }}" title="{{ product.title }}"><h5 class="card-title">{{ product.title }}</h5></a>
+								<p class="card-text">{{ product.price | money_with_currency }}</p>
+								<a href="#0" class="btn btn-primary">View Details</a>
+							</div><!-- /.card-body -->
+						</div><!-- /.card -->
+					</div><!-- /.col -->
+				{% endif %}
+			{% endfor %}
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</section><!-- /.featured-collection-grid -->

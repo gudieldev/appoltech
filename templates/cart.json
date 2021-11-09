@@ -3,12 +3,12 @@
 		"cart_items": {
 			"type": "appoltech-cart-items"
 		},
-		"cart_footer": {
-			"type": "appoltech-cart-footer"
+		"cart_featured_collection": {
+			"type": "appol-cart-related-collection"
 		}
 	},
 	"order": [
 		"cart_items",
-		"cart_footer"
+		"cart_featured_collection"
 	]
 }
