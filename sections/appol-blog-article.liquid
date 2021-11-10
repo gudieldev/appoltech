@@ -1,0 +1,76 @@
+<section class="article-intro section-padding" >
+	<div class="container">
+		<div class="p-5 mb-4 bg-light rounded-3 bg-sz-cover bg-overlay" style="background-image: url({{ article.image | img_url: 'master' }}); ">
+			<div class="container-fluid py-5 text-center">
+				<h1 class="display-5 fw-bold">{{ article.title }}</h1>
+				<p class="col-md-8 fs-6 mx-auto">By <strong>{{ article.author }}</strong> | Published on <em>{{ article.published_at | date: "%a, %b %d, %y" }}</em></p>
+			</div>
+		</div>
+	</div><!-- /.container -->
+</section><!-- /.article-intro -->
+<section class="section-article">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+
+				{{ article.content }}
+
+				{% for tag in article.tags %}
+					#{{ tag | append: ',' }}
+				{% endfor %}
+				
+				<br>
+				<div class="col-12 my-5">
+					<h3>3 comments</h6>
+					<div class="card my-3 shadow">
+						<div class="card-header">
+							By Kesha on February 22, 2021 01:44
+						</div><!-- /.card-header -->
+						<div class="card-body">
+							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						</div><!-- /.card-body -->
+					</div><!-- /.card -->
+					<div class="card my-3 shadow">
+						<div class="card-header">
+							By Kesha on February 22, 2021 01:44
+						</div><!-- /.card-header -->
+						<div class="card-body">
+							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						</div><!-- /.card-body -->
+					</div><!-- /.card -->
+					<div class="card my-3 shadow">
+						<div class="card-header">
+							By Kesha on February 22, 2021 01:44
+						</div><!-- /.card-header -->
+						<div class="card-body">
+							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						</div><!-- /.card-body -->
+					</div><!-- /.card -->
+				</div><!-- /.col-12 -->
+
+				<div class="col-12 my-5">
+					<h3>Make a comment</h6>
+					<form action="">
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" id="floatingText" placeholder="Name">
+							<label for="floatingText">Name</label>
+						</div><!-- /.form-floating -->
+						<div class="form-floating mb-3">
+							<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+							<label for="floatingInput">Email address</label>
+						</div><!-- /.form-floating -->
+						<div class="form-floating">
+							<textarea class="form-control" id="floatingMessage" placeholder="Password" style="min-height: 120px;"></textarea>
+							<label for="floatingMessage">Message</label>
+						</div><!-- /.form-floating -->
+					</form><!-- /form -->
+				</div><!-- /.col -->
+
+				<div class="col-12 my-5 d-flex justify-content-center">
+					<button class="btn btn-outline-primary">Go back to the blog.</button>
+				</div><!-- /.col-12 -->
+
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</section><!-- /.section-article -->

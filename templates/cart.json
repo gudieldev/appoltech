@@ -4,7 +4,12 @@
 			"type": "appoltech-cart-items"
 		},
 		"cart_featured_collection": {
-			"type": "appol-cart-related-collection"
+			"type": "appol-cart-related-collection",
+			"settings": {
+				"collection_title": "You might also like :)",
+				"layout_type": "slider",
+				"featured_collection": "all"
+			}
 		}
 	},
 	"order": [

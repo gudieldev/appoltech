@@ -233,6 +233,18 @@
 	}
 }
 
+// Article Page
+.section-article {
+	table {
+		width: fit-content;
+		margin-top: 10px;
+		td {
+			border: 1px solid gray;
+			padding: 5px;
+		}
+	}
+}
+
 
 .cart-details {
 	.product-table-wrapper {
@@ -272,4 +284,29 @@
 
 img {
 	width: 100%;
+}
+
+.bg-sz-cover {
+	background-size: cover;
+	background-position: center center;
+}
+
+.bg-overlay {
+	position: relative;
+	&::after {
+		content: '';
+		background-color: rgba(#000, .5);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+
+	& * {
+		position: relative;
+		z-index: 2;
+		color: #fff;
+	}
 }
