@@ -21,49 +21,43 @@
 				
 				<br>
 				<div class="col-12 my-5">
-					<h3>3 comments</h6>
-					<div class="card my-3 shadow">
-						<div class="card-header">
-							By Kesha on February 22, 2021 01:44
-						</div><!-- /.card-header -->
-						<div class="card-body">
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-						</div><!-- /.card-body -->
-					</div><!-- /.card -->
-					<div class="card my-3 shadow">
-						<div class="card-header">
-							By Kesha on February 22, 2021 01:44
-						</div><!-- /.card-header -->
-						<div class="card-body">
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-						</div><!-- /.card-body -->
-					</div><!-- /.card -->
-					<div class="card my-3 shadow">
-						<div class="card-header">
-							By Kesha on February 22, 2021 01:44
-						</div><!-- /.card-header -->
-						<div class="card-body">
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-						</div><!-- /.card-body -->
-					</div><!-- /.card -->
+					<h3>{{ article.comments_count }} comments</h6>
+						
+					{% paginate article.comments by 5 %}
+						{% for comment in article.comments %}
+							<div class="card my-3 shadow">
+								<div class="card-header">
+									By {{ comment.author }} on {{ comment.created_at | date: "%b %d, %Y" }}
+								</div><!-- /.card-header -->
+								<div class="card-body">
+									<p class="card-text">{{ comment.content }}</p>
+								</div><!-- /.card-body -->
+							</div><!-- /.card -->
+						{% endfor %}
+
+						{{ paginate | default_pagination }}
+					{% endpaginate %}
+				
 				</div><!-- /.col-12 -->
 
 				<div class="col-12 my-5">
 					<h3>Make a comment</h6>
-					<form action="">
+					{% form 'new_comment', article %}
+						{{ form_errors | default_errors }}
 						<div class="form-floating mb-3">
-							<input type="text" class="form-control" id="floatingText" placeholder="Name">
+							<input type="text" name="customer[author]" value="{{ form.author }}" class="form-control" id="floatingText" placeholder="Name">
 							<label for="floatingText">Name</label>
 						</div><!-- /.form-floating -->
 						<div class="form-floating mb-3">
-							<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+							<input type="email" name="customer[email]" value="{{ form.email }}" class="form-control" id="floatingInput" placeholder="name@example.com">
 							<label for="floatingInput">Email address</label>
 						</div><!-- /.form-floating -->
 						<div class="form-floating">
-							<textarea class="form-control" id="floatingMessage" placeholder="Password" style="min-height: 120px;"></textarea>
+							<textarea class="form-control" name="customer[body]" id="floatingMessage" placeholder="Password" style="min-height: 120px;">{{ form.body }}</textarea>
 							<label for="floatingMessage">Message</label>
 						</div><!-- /.form-floating -->
-					</form><!-- /form -->
+						<input type="submit" value="Comment" class="btn btn-primary mt-3">
+					{% endform %}
 				</div><!-- /.col -->
 
 				<div class="col-12 my-5 d-flex justify-content-center">
