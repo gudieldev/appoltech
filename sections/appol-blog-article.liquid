@@ -24,6 +24,7 @@
 					<h3>{{ article.comments_count }} comments</h6>
 						
 					{% paginate article.comments by 5 %}
+					
 						{% for comment in article.comments %}
 							<div class="card my-3 shadow">
 								<div class="card-header">
@@ -36,6 +37,7 @@
 						{% endfor %}
 
 						{{ paginate | default_pagination }}
+
 					{% endpaginate %}
 				
 				</div><!-- /.col-12 -->
@@ -43,7 +45,7 @@
 				<div class="col-12 my-5">
 					<h3>Make a comment</h6>
 					{% form 'new_comment', article %}
-						{{ form_errors | default_errors }}
+						{{ form.errors | default_errors }}
 						<div class="form-floating mb-3">
 							<input type="text" name="customer[author]" value="{{ form.author }}" class="form-control" id="floatingText" placeholder="Name">
 							<label for="floatingText">Name</label>
