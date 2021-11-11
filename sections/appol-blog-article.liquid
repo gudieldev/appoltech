@@ -1,72 +1,63 @@
-<section class="article-intro section-padding" >
-	<div class="container">
-		<div class="p-5 mb-4 bg-light rounded-3 bg-sz-cover bg-overlay" style="background-image: url({{ article.image | img_url: 'master' }}); ">
-			<div class="container-fluid py-5 text-center">
-				<h1 class="display-5 fw-bold">{{ article.title }}</h1>
-				<p class="col-md-8 fs-6 mx-auto">By <strong>{{ article.author }}</strong> | Published on <em>{{ article.published_at | date: "%a, %b %d, %y" }}</em></p>
-			</div>
-		</div>
-	</div><!-- /.container -->
-</section><!-- /.article-intro -->
-<section class="section-article">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
+<div class="col-12 col-md-8 col-lg-9 section-article">
 
-				{{ article.content }}
+	{{ article.content }}
 
-				{% for tag in article.tags %}
-					#{{ tag | append: ',' }}
+	{% for tag in article.tags %}
+		#{{ tag | append: ',' }}
+	{% endfor %}
+	
+	<br>
+	{% if article.comments_enabled? %}
+		<div class="col-12 my-5">
+			<h3>{{ article.comments_count }} comments</h6>
+				
+			{% paginate article.comments by 5 %}
+			
+				{% for comment in article.comments %}
+					<div class="card my-3 shadow">
+						<div class="card-header">
+							By <strong>{{ comment.author }}</strong> on <em>{{ comment.created_at | date: "%b %d, %Y" }}</em>
+						</div><!-- /.card-header -->
+						<div class="card-body">
+							<p class="card-text">{{ comment.content }}</p>
+						</div><!-- /.card-body -->
+					</div><!-- /.card -->
 				{% endfor %}
-				
-				<br>
-				<div class="col-12 my-5">
-					<h3>{{ article.comments_count }} comments</h6>
-						
-					{% paginate article.comments by 5 %}
-					
-						{% for comment in article.comments %}
-							<div class="card my-3 shadow">
-								<div class="card-header">
-									By {{ comment.author }} on {{ comment.created_at | date: "%b %d, %Y" }}
-								</div><!-- /.card-header -->
-								<div class="card-body">
-									<p class="card-text">{{ comment.content }}</p>
-								</div><!-- /.card-body -->
-							</div><!-- /.card -->
-						{% endfor %}
 
-						{{ paginate | default_pagination }}
+				{{ paginate | default_pagination }}
 
-					{% endpaginate %}
-				
-				</div><!-- /.col-12 -->
+			{% endpaginate %}
+		
+		</div><!-- /.col-12 -->
+	{% endif %}
 
-				<div class="col-12 my-5">
-					<h3>Make a comment</h6>
-					{% form 'new_comment', article %}
-						{{ form.errors | default_errors }}
-						<div class="form-floating mb-3">
-							<input type="text" name="customer[author]" value="{{ form.author }}" class="form-control" id="floatingText" placeholder="Name">
-							<label for="floatingText">Name</label>
-						</div><!-- /.form-floating -->
-						<div class="form-floating mb-3">
-							<input type="email" name="customer[email]" value="{{ form.email }}" class="form-control" id="floatingInput" placeholder="name@example.com">
-							<label for="floatingInput">Email address</label>
-						</div><!-- /.form-floating -->
-						<div class="form-floating">
-							<textarea class="form-control" name="customer[body]" id="floatingMessage" placeholder="Password" style="min-height: 120px;">{{ form.body }}</textarea>
-							<label for="floatingMessage">Message</label>
-						</div><!-- /.form-floating -->
-						<input type="submit" value="Comment" class="btn btn-primary mt-3">
-					{% endform %}
-				</div><!-- /.col -->
+	<div class="col-12 my-5">
+		<h3>Make a comment</h6>
+		{% form 'new_comment', article %}
+			<div class="form-floating mb-3">
+				<input type="text" name="comment[author]" value="{{ form.author }}" class="form-control" id="floatingText" placeholder="Name">
+				<label for="floatingText">Name</label>
+			</div><!-- /.form-floating -->
+			<div class="form-floating mb-3">
+				<input type="email" name="comment[email]" value="{{ form.email }}" class="form-control" id="floatingInput" placeholder="name@example.com">
+				<label for="floatingInput">Email address</label>
+			</div><!-- /.form-floating -->
+			<div class="form-floating">
+				<textarea class="form-control" name="comment[body]" id="floatingMessage" placeholder="Password" style="min-height: 120px;">{{ form.body }}</textarea>
+				<label for="floatingMessage">Message</label>
+			</div><!-- /.form-floating -->
+			<input type="submit" value="Post Comment" class="btn btn-primary mt-3">
+			<br>
+			{% if form.errors %}
+				<div class="alert alert-danger mt-3 w-auto d-inline-block" role="alert">
+					{{ form.errors | default_errors }}
+				</div><!-- /.alert -->
+			{% endif %}
+		{% endform %}
+	</div><!-- /.col -->
 
-				<div class="col-12 my-5 d-flex justify-content-center">
-					<button class="btn btn-outline-primary">Go back to the blog.</button>
-				</div><!-- /.col-12 -->
+	<div class="col-12 my-5 d-flex justify-content-center">
+		<a href="{{ blog.url }}" class="btn btn-outline-primary">Go back to the blog.</a>
+	</div><!-- /.col-12 -->
 
-			</div><!-- /.col -->
-		</div><!-- /.row -->
-	</div><!-- /.container -->
-</section><!-- /.section-article -->
+</div><!-- /.col -->

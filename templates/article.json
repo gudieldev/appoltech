@@ -1,10 +1,15 @@
 {
+	"layout": "article-with-sidebar",
 	"sections": {
 		"article": {
 			"type": "appol-blog-article"
+		},
+		"sidebar": {
+			"type": "appol-article-sidebar"
 		}
 	},
 	"order": [
-		"article"
+		"article",
+		"sidebar"
 	]
 }
