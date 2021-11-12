@@ -1,140 +1,166 @@
 <main>
 	<section class="collection-intro section-padding">
 		<div class="container">
-			<div class="p-5 mb-4 bg-light rounded-3">
+			<div class="p-5 mb-4 bg-light rounded-3 bg-sz-cover bg-overlay" {% unless section.settings.blog_featured_image == blank %} style="background-image: url({{ section.settings.blog_featured_image | img_url: 'master' }})" {% endunless %}>
 				<div class="container-fluid py-5 text-center">
-					<h1 class="display-5 fw-bold">Blog page</h1>
-					<p class="col-md-8 fs-6 mx-auto">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+					<h1 class="display-5 fw-bold">{% unless section.settings.blog_title == blank %} {{ section.settings.blog_title }} {% else %} {{ blog.title }} {% endunless %}</h1>
+					<p class="col-md-8 fs-6 mx-auto">{% unless section.settings.blog_description == blank %} {{ section.settings.blog_description }} {% endunless %} </p>
 				</div>
 			</div>
 		</div><!-- /.container -->
 	</section><!-- /.collection-intro -->
+
+	{% assign layout = section.settings.blog_layout %}
 	<section class="section-blog-list">
 		<div class="container">
-			<div class="row">
-				<div class="col-12 col-md-6">
-					<div class="card blog-article shadow p-3 mb-4">
-						<div class="row">
-							<div class="col-12">
-								<div class="featured-image-wrapper">
-									<div class="featured-image">
-										<img src="slide1.jpg" alt="">
-									</div><!-- /.featured-image -->
-								</div><!-- /.featured-image-wrapper -->
-							</div><!-- /.col -->
-							<div class="col-12">
-								<a href="#0" class="d-block mb-3">
-									<h2>The title of the post!</h2>
-								</a>
-								<p class="col-md-8 fs-6">By <a href="#0"><strong>Justin Bieber</strong></a> | Published on <em>Feb
-										2021,2021</em></p>
-								<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-									saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-									reprehenderit quae dolore tempora!</p>
-								<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-									saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-									reprehenderit quae dolore tempora!</p>
-								<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-									saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-									reprehenderit quae dolore tempora!</p>
-								<a href="#0" class="btn btn-outline-primary">Read More ></a>
-							</div>
-						</div><!-- /.row -->
-					</div><!-- /.card -->
-				</div>
-				<div class="col-12 col-md-6">
-					<div class="card blog-article shadow p-3 mb-4">
-						<div class="row">
-							<div class="col-12">
-								<div class="featured-image-wrapper">
-									<div class="featured-image">
-										<img src="slide1.jpg" alt="">
-									</div><!-- /.featured-image -->
-								</div><!-- /.featured-image-wrapper -->
-							</div><!-- /.col -->
-							<div class="col-12">
-								<a href="#0" class="d-block mb-3">
-									<h2>The title of the post!</h2>
-								</a>
-								<p class="col-md-8 fs-6">By <a href="#0"><strong>Justin Bieber</strong></a> | Published on <em>Feb
-										2021,2021</em></p>
-								<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-									saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-									reprehenderit quae dolore tempora!</p>
-								<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-									saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-									reprehenderit quae dolore tempora!</p>
-								<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-									saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-									reprehenderit quae dolore tempora!</p>
-								<a href="#0" class="btn btn-outline-primary">Read More ></a>
-							</div>
-						</div><!-- /.row -->
-					</div><!-- /.card -->
-				</div>
-			</div>
-			<div class="card blog-article shadow p-3 mb-4">
-				<div class="row">
-					<div class="col-12 col-sm-3">
-						<div class="featured-image-wrapper">
-							<div class="featured-image">
-								<img src="slide1.jpg" alt="">
-							</div><!-- /.featured-image -->
-						</div><!-- /.featured-image-wrapper -->
-					</div><!-- /.col -->
-					<div class="col-12 col-sm-9">
-						<a href="#0" class="d-block mb-3">
-							<h2>The title of the post!</h2>
-						</a>
-						<p class="col-md-8 fs-6">By <a href="#0"><strong>Justin Bieber</strong></a> | Published on <em>Feb 2021,2021</em></p>
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod reprehenderit quae dolore tempora!</p>
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod reprehenderit quae dolore tempora!</p>
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod reprehenderit quae dolore tempora!</p>
-						<a href="#0" class="btn btn-outline-primary">Read More ></a>
-					</div>
+			{% paginate blog.articles by 4 %}
+				<div class="row" {% if layout == 'masonry' %} data-masonry='{ "percentPosition": true }' {% endif %}>
+					{% for article in blog.articles %}
+						{% if layout == 'masonry' %}
+							<div class="col-sm-6 col-lg-4">
+								<div class="card mb-3">
+									{% if article.image != blank %}
+										{{ article.image | img_url: 'master' | img_tag: '' }}
+									{% else %}
+										{{ 'product-1' | placeholder_svg_tag }}
+									{% endif %}
+									<div class="card-body">
+										<h5 class="card-title">{{ article.title }}</h5>
+										<p class="card-text">{{ article.excerpt_or_content }}</p>
+										<p class="card-text"><small class="text-muted">Nov 12, 2021</small></p>
+										<a href="#0" class="btn btn-primary">Read more...</a>
+									</div>
+								</div><!-- /.card -->
+							</div><!-- /.col-sm-6 -->
+						{% else %}
+							<div class="col-12 {% if layout == 'grid' %} col-md-6 {% endif %}">
+								<div class="card blog-article shadow p-3 mb-4">
+									<div class="row">
+										<div class="col-12 {% if layout == 'full_width' %} col-sm-3 {% endif %}">
+											<div class="featured-image-wrapper">
+												<div class="featured-image">
+													<img src="slide1.jpg" alt="">
+												</div><!-- /.featured-image -->
+											</div><!-- /.featured-image-wrapper -->
+										</div><!-- /.col -->
+										<div class="col-12 {% if layout == 'full_width' %} col-sm-9 {% endif %}">
+											<a href="#0" class="d-block mb-3">
+												<h2>The title of the post!</h2>
+											</a>
+											<p class="col-md-8 fs-6">By <a href="#0"><strong>Justin Bieber</strong></a> | Published on <em>Feb
+													2021,2021</em></p>
+											<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
+												saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
+												reprehenderit quae dolore tempora!</p>
+											<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
+												saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
+												reprehenderit quae dolore tempora!</p>
+											<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
+												saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
+												reprehenderit quae dolore tempora!</p>
+											<a href="#0" class="btn btn-outline-primary">Read More ></a>
+										</div>
+									</div><!-- /.row -->
+								</div><!-- /.card -->
+							</div><!-- /.col-12 -->
+						{% endif %}
+					{% endfor %}
 				</div><!-- /.row -->
-			</div><!-- /.card -->
-			<div class="card blog-article shadow p-3 mb-4">
-				<div class="row">
-					<div class="col-12 col-sm-3">
-						<div class="featured-image-wrapper">
-							<div class="featured-image">
-								<img src="slide1.jpg" alt="">
-							</div><!-- /.featured-image -->
-						</div><!-- /.featured-image-wrapper -->
-					</div><!-- /.col -->
-					<div class="col-12 col-sm-9">
-						<a href="#0" class="d-block mb-3">
-							<h2>The title of the post!</h2>
-						</a>
-						<p class="col-md-8 fs-6">By <a href="#0"><strong>Justin Bieber</strong></a> | Published on <em>Feb
-								2021,2021</em></p>
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-							saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-							reprehenderit quae dolore tempora!</p>
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-							saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-							reprehenderit quae dolore tempora!</p>
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quod eligendi dicta, blanditiis iste
-							saepe minus praesentium in laudantium molestiae modi. Architecto omnis enim aspernatur quod
-							reprehenderit quae dolore tempora!</p>
-						<a href="#0" class="btn btn-outline-primary">Read More ></a>
-					</div>
-				</div><!-- /.row -->
-			</div><!-- /.card -->
-			
-			
-			<div class="blog-pagination d-flex justify-content-center mt-5">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</ul><!-- /.pagination -->
-				</nav><!-- /nav -->
-			</div><!-- /.collection-pagination -->
+
+				<div class="blog-pagination d-flex justify-content-center mt-5">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							{% if paginate.previous.is_link %}
+								<li class="page-item"><a class="page-link" href="{{ paginate.previous.url }}">Previous</a></li>
+							{% else %}
+								<li class="page-item disabled"><span class="page-link">Previous</span></li>
+							{% endif %}
+
+							{% for part in paginate.parts %}
+								{% if part.is_link %}
+									<li class="page-item"><a class="page-link" href="{{ part.url }}">{{ part.title }}</a></li>
+									{% else %}
+									<li class="page-item active" aria-current="page"><span class="page-link">{{ part.title }}</span></li>
+								{% endif %}
+							{% endfor %}
+
+							{% if paginate.next.is_link %}
+								<li class="page-item"><a class="page-link" href="{{ paginate.next.url }}">Next</a></li>
+							{% else %}
+								<li class="page-item disabled"><span class="page-link">Next</span></li>
+							{% endif %}
+						</ul><!-- /.pagination -->
+					</nav><!-- /nav -->
+				</div><!-- /.collection-pagination -->
+
+			{% endpaginate %}
 		</div><!-- /.container -->
 	</section><!-- /.section-blog-list -->
 </main><!-- /MAIN -->
+
+{% schema %}
+{
+	"name": "Main Blog",
+	"settings": [
+		{
+			"type": "text",
+			"label": "Blog title",
+			"info": "If empty the default blog title will be displayed.",
+			"id": "blog_title"
+		},
+		{
+			"type": "richtext",
+			"id": "blog_description",
+			"label": "Blog description"
+		},
+		{
+			"type": "image_picker",
+			"id": "blog_featured_image",
+			"label": "Featured image cover"
+		},
+		{
+			"type": "number",
+			"id": "posts_per_page",
+			"label": "Posts per page",
+			"default": 5
+		},
+		{
+			"type": "radio",
+			"id": "blog_layout",
+			"label": "Layout",
+			"options": [
+				{
+					"value": "grid",
+					"label": "Grid"
+				},
+				{
+					"value": "full_width",
+					"label": "Full Width"
+				},
+				{
+					"value": "masonry",
+					"label": "Masonry"
+				}
+			]
+		},
+		{
+			"type": "checkbox",
+			"id": "show_post_featured_image",
+			"label": "Show Post Featured Image",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_excerpt",
+			"label": "Show Post Excerpt",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_read_more_button",
+			"label": "Show Read More button",
+			"default": true
+		}
+	]
+}
+{% endschema %}
