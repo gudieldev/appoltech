@@ -1,63 +1,95 @@
-<div class="col-12 col-md-8 col-lg-9 section-article">
+{% for block in section.blocks %}
+	{% case block.type %}
+		{% when 'article_content' %}
+			{{ article.content }}
+			{% for tag in article.tags %}
+				#{{ tag | append: ',' }}
+			{% endfor %}
 
-	{{ article.content }}
-
-	{% for tag in article.tags %}
-		#{{ tag | append: ',' }}
-	{% endfor %}
-	
-	<br>
-	{% if article.comments_enabled? %}
-		<div class="col-12 my-5">
-			<h3>{{ article.comments_count }} comments</h6>
-				
-			{% paginate article.comments by 5 %}
-			
-				{% for comment in article.comments %}
-					<div class="card my-3 shadow">
-						<div class="card-header">
-							By <strong>{{ comment.author }}</strong> on <em>{{ comment.created_at | date: "%b %d, %Y" }}</em>
-						</div><!-- /.card-header -->
-						<div class="card-body">
-							<p class="card-text">{{ comment.content }}</p>
-						</div><!-- /.card-body -->
-					</div><!-- /.card -->
-				{% endfor %}
-
-				{{ paginate | default_pagination }}
-
-			{% endpaginate %}
-		
-		</div><!-- /.col-12 -->
-	{% endif %}
-
-	<div class="col-12 my-5">
-		<h3>Make a comment</h6>
-		{% form 'new_comment', article %}
-			<div class="form-floating mb-3">
-				<input type="text" name="comment[author]" value="{{ form.author }}" class="form-control" id="floatingText" placeholder="Name">
-				<label for="floatingText">Name</label>
-			</div><!-- /.form-floating -->
-			<div class="form-floating mb-3">
-				<input type="email" name="comment[email]" value="{{ form.email }}" class="form-control" id="floatingInput" placeholder="name@example.com">
-				<label for="floatingInput">Email address</label>
-			</div><!-- /.form-floating -->
-			<div class="form-floating">
-				<textarea class="form-control" name="comment[body]" id="floatingMessage" placeholder="Password" style="min-height: 120px;">{{ form.body }}</textarea>
-				<label for="floatingMessage">Message</label>
-			</div><!-- /.form-floating -->
-			<input type="submit" value="Post Comment" class="btn btn-primary mt-3">
+		{% when 'article_comments' %}
 			<br>
-			{% if form.errors %}
-				<div class="alert alert-danger mt-3 w-auto d-inline-block" role="alert">
-					{{ form.errors | default_errors }}
-				</div><!-- /.alert -->
+			{% if article.comments_enabled? %}
+				<div class="col-12 my-5">
+					<h3>{{ article.comments_count }} comments</h6>
+						
+					{% paginate article.comments by 5 %}
+					
+						{% for comment in article.comments %}
+							<div class="card my-3 shadow">
+								<div class="card-header">
+									By <strong>{{ comment.author }}</strong> on <em>{{ comment.created_at | date: "%b %d, %Y" }}</em>
+								</div><!-- /.card-header -->
+								<div class="card-body">
+									<p class="card-text">{{ comment.content }}</p>
+								</div><!-- /.card-body -->
+							</div><!-- /.card -->
+						{% endfor %}
+
+						{{ paginate | default_pagination }}
+
+					{% endpaginate %}
+				
+				</div><!-- /.col-12 -->
 			{% endif %}
-		{% endform %}
-	</div><!-- /.col -->
 
-	<div class="col-12 my-5 d-flex justify-content-center">
-		<a href="{{ blog.url }}" class="btn btn-outline-primary">Go back to the blog.</a>
-	</div><!-- /.col-12 -->
+		{% when 'article_comment_form' %}
+			<div class="col-12 my-5">
+				<h3>Make a comment</h6>
+				{% form 'new_comment', article %}
+					<div class="form-floating mb-3">
+						<input type="text" name="comment[author]" value="{{ form.author }}" class="form-control" id="floatingText" placeholder="Name">
+						<label for="floatingText">Name</label>
+					</div><!-- /.form-floating -->
+					<div class="form-floating mb-3">
+						<input type="email" name="comment[email]" value="{{ form.email }}" class="form-control" id="floatingInput" placeholder="name@example.com">
+						<label for="floatingInput">Email address</label>
+					</div><!-- /.form-floating -->
+					<div class="form-floating">
+						<textarea class="form-control" name="comment[body]" id="floatingMessage" placeholder="Password" style="min-height: 120px;">{{ form.body }}</textarea>
+						<label for="floatingMessage">Message</label>
+					</div><!-- /.form-floating -->
+					<input type="submit" value="Post Comment" class="btn btn-primary mt-3">
+					<br>
+					{% if form.errors %}
+						<div class="alert alert-danger mt-3 w-auto d-inline-block" role="alert">
+							{{ form.errors | default_errors }}
+						</div><!-- /.alert -->
+					{% endif %}
+				{% endform %}
+			</div><!-- /.col -->
 
-</div><!-- /.col -->
+		{% when 'blog_page_button' %}
+			<div class="col-12 my-5 d-flex justify-content-center">
+				<a href="{{ blog.url }}" class="btn btn-outline-primary">Go back to the blog.</a>
+			</div><!-- /.col-12 -->
+	{% endcase %}
+{% endfor %}
+
+{% schema %}
+{
+	"name": "Main Article",
+	"class": "col-12 col-md-8 col-lg-9 section-article",
+	"blocks": [
+		{
+			"name": "Article Content",
+			"type": "article_content",
+			"limit": 1
+		},
+		{
+			"name": "Article Comments",
+			"type": "article_comments",
+			"limit": 1
+		},
+		{
+			"name": "Article Comment Form",
+			"type": "article_comment_form",
+			"limit": 1
+		},
+		{
+			"name": "Blog page button",
+			"type": "blog_page_button",
+			"limit": 1
+		}
+	]
+}
+{% endschema %}

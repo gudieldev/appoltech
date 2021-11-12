@@ -2,10 +2,46 @@
 	"layout": "article-with-sidebar",
 	"sections": {
 		"article": {
-			"type": "appol-blog-article"
+			"type": "appol-blog-article",
+			"blocks": {
+				"article_content": {
+					"type": "article_content"
+				},
+				"article_comments": {
+					"type": "article_comments"
+				},
+				"article_comment_form": {
+					"type": "article_comment_form"
+				},
+				"blog_page_button": {
+					"type": "blog_page_button"
+				}
+			},
+			"block_order": [
+				"article_content",
+				"article_comments",
+				"article_comment_form",
+				"blog_page_button"
+			]
 		},
 		"sidebar": {
-			"type": "appol-article-sidebar"
+			"type": "appol-article-sidebar",
+			"blocks": {
+				"sidebar_title": {
+					"type": "sidebar_title"
+				},
+				"sidebar_description": {
+					"type": "sidebar_description"
+				},
+				"sidebar_image": {
+					"type": "sidebar_image"
+				}
+			},
+			"block_order": [
+				"sidebar_title",
+				"sidebar_description",
+				"sidebar_image"
+			]
 		}
 	},
 	"order": [
