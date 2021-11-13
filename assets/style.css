@@ -228,6 +228,10 @@
   height: 100%;
 }
 
+.section-blog-list .card {
+  height: 100%;
+}
+
 .section-blog-list .featured-image-wrapper .featured-image {
   width: 100%;
   padding-bottom: 100%;
@@ -235,7 +239,8 @@
   overflow: hidden;
 }
 
-.section-blog-list .featured-image-wrapper .featured-image img {
+.section-blog-list .featured-image-wrapper .featured-image img,
+.section-blog-list .featured-image-wrapper .featured-image svg {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -318,5 +323,9 @@ img {
   position: relative;
   z-index: 2;
   color: #fff;
+}
+
+.placeholder-color {
+  background-color: #ccc;
 }
 /*# sourceMappingURL=style.css.map */
