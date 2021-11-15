@@ -328,4 +328,36 @@ img {
 .placeholder-color {
   background-color: #ccc;
 }
+
+.social-sharing-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.social-sharing-icons a {
+  text-decoration: none;
+  margin-right: 25px;
+}
+
+.social-sharing-icons .bi-facebook path {
+  fill: #0a66c2;
+}
+
+.social-sharing-icons .bi-twitter path {
+  fill: #1d9bf0;
+}
+
+.social-sharing-icons .bi-linkedin path {
+  fill: #365899;
+}
+
+.social-sharing-icons .bi-envelope-fill path {
+  fill: darkred;
+}
+
+.social-sharing-icons svg {
+  width: 30px;
+  height: 30px;
+}
 /*# sourceMappingURL=style.css.map */

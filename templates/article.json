@@ -7,6 +7,9 @@
 				"article_content": {
 					"type": "article_content"
 				},
+				"article_share_buttons": {
+					"type": "article_share_buttons"
+				},
 				"article_comments": {
 					"type": "article_comments"
 				},
@@ -19,6 +22,7 @@
 			},
 			"block_order": [
 				"article_content",
+				"article_share_buttons",
 				"article_comments",
 				"article_comment_form",
 				"blog_page_button"

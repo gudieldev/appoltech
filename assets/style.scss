@@ -318,3 +318,21 @@ img {
 .placeholder-color {
 	background-color: #ccc;
 }
+
+.social-sharing-icons {
+	display: flex;
+	a {
+		text-decoration: none;
+		margin-right: 25px;
+	}
+
+	.bi-facebook { path { fill: #0a66c2; } }
+	.bi-twitter { path { fill: #1d9bf0; } }
+	.bi-linkedin { path { fill: #365899; } }
+	.bi-envelope-fill { path { fill: darkred; } }
+
+	svg {
+		width: 30px;
+		height: 30px;
+	}
+}
