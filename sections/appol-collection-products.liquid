@@ -1,0 +1,87 @@
+<section class="featured-collection-grid section-padding">
+	<div class="container">
+		<div class="collection-filters">
+			<div class="sortby">
+				<div class="row">
+					<div class="col-auto">
+						<div class="input-group mb-3">
+							<label class="input-group-text" for="inputGroupSelect01">Sort by:</label>
+							<select class="form-select" id="inputGroupSelect01">
+								{% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+								{% for option in collection.sort_options %}
+									<option value="{{ option.value }}" {% if sort_by == option.value %} selected="selected" {% endif %}>{{ option.name }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div><!-- /.col-auto -->
+				</div><!-- /.row -->
+			</div><!-- /.sortby -->
+		</div><!-- /.section-title -->
+		<div class="row">
+			
+			{% paginate collection.products by 3 %}
+				{% for product in collection.products %}
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+						<div class="card mb-4">
+							<div class="bg-light border border-light">
+								<div class="product-img">
+									{% if product.featured_image == blank %}
+									{{ 'image' | placeholder_svg_tag: 'card-img-top' }}
+								{% else %}
+									{{ product.featured_image | img_url: 'master' | img_tag: '', 'card-img-top' }}
+								{% endif %}
+								</div><!-- /.product-img -->
+							</div><!-- /.product-img -->
+							<div class="card-body">
+								<a href="{{ product.url }}"><h5 class="card-title">{{ product.title }}</h5></a>
+								<p class="card-text">{{ product.price | money_with_currency }}</p>
+								<a href="#0" class="btn btn-primary">View Details</a>
+							</div><!-- /.card-body -->
+						</div><!-- /.card -->
+					</div><!-- /.col -->
+				{% endfor %}
+				<div class="collection-pagination d-flex justify-content-center mt-5">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							{% assign prev_url = paginate.previous.url | default: '#0' %}
+							{% assign next_url = paginate.next.url | default: '#0' %}
+							<li class="page-item {% if paginate.previous.is_link == blank %} disabled {% endif %}"><a class="page-link" href="{{ prev_url }}">Previous</a></li>
+							{% for part in paginate.parts %}
+								{% assign url = part.url | default: '#0' %}
+								<li class="page-item {% if part.is_link == false %} active {% endif %}"><a class="page-link" href="{{ url }}">{{ part.title }}</a></li>
+							{% endfor %}
+							<li class="page-item {% if paginate.next.is_link == blank %} disabled {% endif %}"><a class="page-link" href="{{ next_url }}">Next</a></li>
+						</ul>
+					</nav>
+				</div>
+				{{ paginate | default_pagination: next: 'next >', previous: '< newer' }}
+			{% endpaginate %}
+		</div><!-- /.row -->
+
+
+	</div><!-- /.container -->
+</section><!-- /.featured-collection-grid -->
+
+<script>
+	urlParams = {};
+
+	// Preserve existing query parameters
+	if (location.search.length) {
+		let params = location.search.substr(1).split('&')
+		for (let i = 0; i < params.length; i++) {
+			let keyValue = params[i].split('=');
+
+			if(keyValue.length) {
+				urlParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+			}
+		}
+	}
+
+	// Update sort_by query parameter on select change
+	document.querySelector('.form-select').addEventListener('change', function (e) {
+		let value = e.target.value;
+
+		urlParams.sort_by = value;
+		location.search = new URLSearchParams(urlParams).toString();
+	});
+</script>

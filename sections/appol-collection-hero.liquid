@@ -1,0 +1,83 @@
+<div class="container">
+	<div class="p-5 mb-4 bg-light rounded-3">
+		<div class="container-fluid py-5 text-center">
+			{% for block in section.blocks %}
+				{% if block.type == 'collection_title' %}
+					{% assign title = block.settings.title | default: collection.title %}
+					<h1 class="display-5 fw-bold">{{ title }}</h1>
+				{% elsif block.type == 'collection_description' %}
+					{% assign description = block.settings.description | default: collection.description %}	
+					<p class="col-md-8 fs-6 mx-auto">{{ description }}</p>
+				{% elsif block.type == 'collection_leading_text' %}
+					{% assign leading_text = block.settings.leading_text | default: 'It uses utility classes for typography and spacing to space content out within the larger container.' %}	
+					<p>{{ leading_text }}</p>
+				{% elsif block.type == 'separator' %}
+					{% unless block.settings.add_separator == blank %}
+						<hr class="my-4">
+					{% endunless %}
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div><!-- /.container -->
+
+{% schema %}
+{
+	"name": "Collection Hero",
+	"tag": "section",
+	"blocks": [
+		{
+			"name": "Collection Title",
+			"type": "collection_title",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title",
+					"info": "If empty, default collection title will be used"
+				}
+			],
+			"limit": 1
+		},
+		{
+			"name": "Collection Description",
+			"type": "collection_description",
+			"settings": [
+				{
+					"type": "textarea",
+					"id": "description",
+					"label": "Description",
+					"info": "If empty, default collection description will be used"
+				}
+			],
+			"limit": 1
+		},
+		{
+			"name": "Collection Leading Text",
+			"type": "collection_leading_text",
+			"settings": [
+				{
+					"type": "textarea",
+					"id": "leading_text",
+					"label": "Leading Text",
+					"info": "If empty, default collection leading text will be used"
+				}
+			],
+			"limit": 1
+		},
+		{
+			"name": "Separator",
+			"type": "separator",
+			"settings": [
+				{
+					"type": "checkbox",
+					"id": "add_separator",
+					"label": "Add Separator",
+					"default": true
+				}
+			],
+			"limit": 1
+		}
+	]
+}
+{% endschema %}
